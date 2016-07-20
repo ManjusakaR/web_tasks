@@ -1,159 +1,206 @@
 require 'yaml'
+
 class Student
   @@n=0
   @id=0
   @name=""
   @gender=""
-  @age=""
+  @age=0
 
-  def i
+  def initialize
     @@n+=1
     @id=@@n
-  end
 
-  def n
     chars=("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
     newpass=""
     1.upto(3){ |i| newpass << chars[rand(chars.size-1)]}
     @name=newpass
-  end
 
-  def g
     c=rand(0..1)
-    if c==0
-    @gender="M"
-  else
-    @gender="F"
-  end
-  end
+    @gender=
+      if 0
+        "M"
+      else
+        "F"
+      end
 
-  def a
     @age=rand(15..20)
   end
 
-  def d
-    puts "#@id #@name #@gender #@age"
+  def get_id
+    @id
+  end
+
+  def get_name
+    @name
+  end
+
+  def get_gender
+    @gender
+  end
+
+  def get_age
+    @age
+  end
+
+  def display
+    puts "#{@id} #{@name} #{@gender} #{@age} "
   end
 
 end
 
 
 @d=Dir.pwd
-puts @d
+puts "#{@d}"
+
 @filename=@d+'/student.yml'
-puts @filename
-if File.exists?(@filename)==false then
+puts "#{@filename}"
+
+if File.exists?(@filename)==false
   @file=File.new(@filename,"w")
-@i=1
-@con=Hash.new
-@configuration=Hash.new
-while @i<=100 do
-  s=Student.new()
-  ss='st'+@i.to_s
-  @con={ ss => {
-    'id' => s.i(),
-    'name' => s.n().to_s,
-    'gender'  => s.g().to_s,
-    'age'  =>  s.a()
-  }
-  }
-   @configuration.update(@con)
- #puts @configuration
-#str=+' '++' '++' '+
-#@file.puts "#{str}"
-#aFile.syswrite("ABCDEF")
-#s.d()
-@i+=1
-end
-puts "#@configuration"
-open(@filename, 'a+') { |f| YAML.dump(@configuration, f) }
-#open(@filename) { |f| puts f.read }
-open(@filename) { |f| YAML.load(f) }
+  @i=1
+  @con=Hash.new
+  @configuration=Hash.new
+
+  while @i<=100
+    s=Student.new
+    s_num='st'+@i.to_s
+    @con={
+      s_num => {
+      'id' => s.get_id,
+      'name' => s.get_name,
+      'gender'  => s.get_gender,
+      'age'  =>  s.get_age
+      }
+    }
+    @configuration.update(@con)
+    @i+=1
+  end
+
+  puts "write stuent,yml success!"
+  open(@filename, 'w') { |f| YAML.dump(@configuration, f) }
+  #open(@filename) { |f| YAML.load(f) }
+
 else
    #open(@filename) { |f| puts f.read }
    @configuration=YAML.load(File.open(@filename))
-   puts "#@configuration"
-
-  #puts "problem id is s#{problem["program"]["id"]}"
+   @configuration.each{ |ckey,cvalue|
+     puts "#{ckey}"
+     puts "-id: #{cvalue['id']}"
+     puts "-name: #{cvalue['name']}"
+     puts "-gender: #{cvalue['gender']}"
+     puts "-age: #{cvalue['age']}"
+     puts"---"
+   }
 end
 
-def ad
-  @ii=@i.to_i
-  @i=@i.to_i+1
-  s=Student.new()
-  ss='st'+@ii.to_s
-  puts "#{ss}"
-  @con={ ss => {
-    'id' => s.i(),
-    'name' => s.n().to_s,
-    'gender'  => s.g().to_s,
-    'age'  =>  s.a()
+def add_student
+  i=@configuration.size+1
+  s=Student.new
+  s_num='st'+i.to_s
+  @con={
+    s_num => {
+    'id' => i,
+    'name' => s.get_name,
+    'gender'  => s.get_gender,
+    'age'  =>  s.get_age
+    }
   }
-  }
-  puts @con
-   @configuration.update(@con)
-  open(@filename, 'a+') { |f| YAML.dump(@configuration, f) }
-  #open(@filename) { |f| puts f.read }
-  open(@filename) { |f| YAML.load(f) }
+  #puts @con
+  @configuration.update(@con)
+  open(@filename, 'a+') { |f| YAML.dump(@con, f) }
+  #open(@filename) { |f| YAML.load(f) }
 end
 
-def del
+def delete_student
   puts "please input id"
   i=gets
-  ss='st'+i.to_s
-  @configuration.delete_if(ss)
+  s='st'+i.to_s
+  s_num=s.chomp
+  @configuration.delete(s_num)
   open(@filename, 'w') { |f| YAML.dump(@configuration, f) }
   #open(@filename) { |f| puts f.read }
-  open(@filename) { |f| YAML.load(f) }
+  #open(@filename) { |f| YAML.load(f) }
 end
 
-def upd
-
-end
-
-def sea
+def update_student
   puts "please input id"
-  i=gets
-  ss='st'+i.to_s
-  puts @configuration.(ss)
-
+  id=gets
+  s_id=id.chomp
+  puts "please input name"
+  name=gets
+  s_name=name.chomp
+  puts "please input gender"
+  gender=gets
+  s_gender=gender.chomp
+  puts "please input age"
+  age=gets
+  s_age=age.chomp
+  s='st'+s_id.to_s
+  s_num=s.chomp
+  @con={
+    s_num => {
+    'id' => s_id,
+    'name' => s_name,
+    'gender'  => s_gender,
+    'age'  =>  s_age
+    }
+  }
+  @configuration.update(@con)
+  open(@filename, 'w') { |f| YAML.dump(@configuration, f) }
 end
 
-def sortid
-@configuration.sort
-puts @configuration
+def search_student
+  puts "please input id"
+  s_id=gets
+  s='st'+s_id.to_s
+  s_num=s.chomp
+  s_data=@configuration.fetch(s_num)
+  puts "#{s_data}"
 end
 
-def sortage
+def sort_by_id
+  i=@configuration.size
+  hash_to_array=@configuration.to_a
+  puts "#{hash_to_array}"
+  @configuration.sort
+  @configuration.each{ |ckey,cvalue|
+    puts "#{ckey}"
+    puts "-id: #{cvalue['id']}"
+    puts "-name: #{cvalue['name']}"
+    puts "-gender: #{cvalue['gender']}"
+    puts "-age: #{cvalue['age']}"
+    puts"---"
+  }
+  puts
+end
+
+def sort_by_age
+  hash_to_array=@configuration.to_a
+  puts "#{hash_to_array}"
 
 end
-def sortname
-
-end
-
-def exi
+def sort_by_name
 
 end
 
 puts "please choose operation(1:add data; 2:delete data; 3:update data; 4:search data; 5:sort by id; 6:sort by age; 7:sort by name; 8:exit) "
 @val=gets
-while @val.to_i!=8 do
+while @val.to_i!=8
   if @val.to_i==1
-    ad
+    add_student
   elsif @val.to_i==2
-    del
+    delete_student
   elsif @val.to_i==3
-    upd
+    update_student
   elsif @val.to_i==4
-    sea
+    search_student
   elsif @val.to_i==5
-    sortid
+    sort_by_id
   elsif @val.to_i==6
-    sortage
+    sort_by_age
   elsif @val.to_i==7
-    sortname
-  elsif @val.to_i==8
-    exi
+    sort_by_name
   else
     puts "please reinput"
   end
