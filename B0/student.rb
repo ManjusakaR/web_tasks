@@ -172,16 +172,17 @@ def sort_by_id
     puts "-age: #{cvalue['age']}"
     puts"---"
   }
-  puts
+  puts " er wei shu zu sort? not done"
 end
 
 def sort_by_age
   hash_to_array=@configuration.to_a
   puts "#{hash_to_array}"
-
+  puts " er wei shu zu sort? not done"
 end
-def sort_by_name
 
+def sort_by_name
+  puts " er wei shu zu sort? not done"
 end
 
 puts "please choose operation(1:add data; 2:delete data; 3:update data; 4:search data; 5:sort by id; 6:sort by age; 7:sort by name; 8:exit) "
