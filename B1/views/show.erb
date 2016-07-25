@@ -1,9 +1,44 @@
+<html>
+<head>
+</head>
+<body>
 
 <form action="/show" method="post">
   search_by_id: <input type="text" name= "id" />
   search_by_author: <input type="text" name= "author" />
   <input type="submit" value="Search" />
 </form>
-<h2> <a href="/add">Add</a> <a href="/delete">Delete</a> </h2>
-<h2> <%= $blog_a %> </h2>
-<h2> <%= $b_search %> </h2>
+
+ <a href="/add">Add</a>
+ <a href="/delete">Delete</a>
+
+ <h2></h2>
+  <h2></h2>
+   <h2></h2>
+
+<h2>Messages</h2>
+<table border="1">
+  <tr>
+    <th>Choose</th>
+    <th>Id</th>
+    <th>Message</th>
+    <th>Author</th>
+    <th>Create_time</th>
+    <th>Delete</th>
+  </tr>
+  <% $b_search.reverse.each { |b| %>
+    <tr>
+      <th><%= b[0]%></th>
+      <th><%= b[1]%></th>
+      <th><%= b[2]%></th>
+      <th><%= b[3]%></th>
+      <th>
+        <form action="/delete" method="post">
+        <button type="submit" name="id" value=<%= b[0]%> >Delete</button>
+        </form>
+      </th>
+    </tr>
+    <% } %>
+</table>
+
+<h2> <%= $msg %> </h2>
