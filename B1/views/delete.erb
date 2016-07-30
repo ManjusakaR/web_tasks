@@ -1,4 +1,16 @@
-<form action="/delete" method="post">
-  id: <input type="text" name= "id" />
-  <input type="submit" value="Delete" />
-</form>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3>
+				删除博客（请输入播客ID）
+			</h3>
+			<form role="form" action="/delete" method="post">
+				<div class="form-group">
+					 <label for="exampleInputEmail1">ID:</label>
+           <input class="form-control"  type="text" name="id"/>
+				</div>
+      </div> <button type="submit" class="btn btn-default">Delete</button>    <a  href="/show">Back</a>
+			</form>
+		</div>
+	</div>
+</div>
