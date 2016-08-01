@@ -2,11 +2,11 @@ $blog_a=Array.new
 $b_search=Array.new
 $msg=''
 class Blog
+  attr_accessor :id
+  attr_accessor :message
+  attr_accessor :author
+  attr_accessor :created_at
   @@b_id=0
-  @id=0
-  @message=''
-  @author=''
-  @created_at=Time.new
 
   def initialize(msg, aut)
     @id=@@b_id
@@ -16,37 +16,20 @@ class Blog
     @created_at=Time.now
   end
 
-  def get_id
-    @id
-  end
-
-  def get_message
-    @message
-  end
-
-  def get_author
-    @author
-  end
-
-  def get_time
-    @created_at
-  end
-
   def Blog.add_blog(b_new)
     $msg=''
-    if b_new.get_author==""&&b_new.get_message.size<10
+    if b_new.author==""&&b_new.message.size<10
       $msg='author_name is nil and the length of message is less than 10'
-    elsif b_new.get_author==""
+    elsif b_new.author==""
       $msg='author_name is nil'
-    elsif b_new.get_message.size<10
+    elsif b_new.message.size<10
       $msg='the length of message is less than 10'
     else
-      $blog_a+=blog_new=[[b_new.get_id,b_new.get_message,b_new.get_author,b_new.get_time]]
+      $blog_a+=blog_new=[[b_new.id,b_new.message,b_new.author,b_new.created_at]]
       $b_search=$blog_a
       $msg='add message sucessfilly'
     end
-    puts $b_search
-    b_new.get_id
+    b_new.id
   end
 
   def Blog.search_by_id(id,blog_a)

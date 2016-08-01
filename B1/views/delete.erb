@@ -1,15 +1,25 @@
+<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js"></script>
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3>
 				删除博客（请输入播客ID）
 			</h3>
-			<form role="form" action="/delete" method="post">
+			<form class="form-horizontal" role="form" action="/delete" method="post">
 				<div class="form-group">
-					 <label for="exampleInputEmail1">ID:</label>
-           <input class="form-control"  type="text" name="id"/>
+					 <label class="col-sm-2 control-label" for="inputEmail3">ID:</label>
+					<div class="col-sm-10">
+						<input class="form-control" id="inputEmail3" type="text" name="id"/>
+					</div>
 				</div>
-      </div> <button type="submit" class="btn btn-default">Delete</button>    <a  href="/show">Back</a>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						 <button class="btn btn-default" type="submit">Delete</button> <a  href="/show">Back</a>
+					</div>
+				</div>
 			</form>
 		</div>
 	</div>

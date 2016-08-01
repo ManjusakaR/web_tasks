@@ -1,26 +1,22 @@
 require 'sinatra'
 require 'erb'
 require 'date'
-load 'blog.rb'
+require './blog'
 
 get '/' do
-  redirect to('show')
-end
-
-get '/show' do
-  $msg=''
   $b_search=$blog_a
   $msg='All message'
   erb :show
 end
 
-post '/show' do
+get '/show' do
   id=params[:id]
   author=params[:author]
+  puts id
   if id!=""
     $b_search=Blog.search_by_id(id.to_i,$blog_a)
   elsif author!=""
-    $b_search=Blog.search_by_author(author,$blog_a)
+      $b_search=Blog.search_by_author(author,$blog_a)
   else
     $msg='All message'
     $b_search=$blog_a
