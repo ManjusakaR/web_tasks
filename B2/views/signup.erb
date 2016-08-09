@@ -1,0 +1,18 @@
+
+<% if @u.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @u.errors.count %> prohibited this post from being saved:</h2>
+
+    <ul>
+    <% @u.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<form action="/signup" method="post">
+  Name: <input type="text" name="username" />
+  Password: <input type="password" name="pwd" />
+  <input type="submit" value="Sign Up" />
+</form>
