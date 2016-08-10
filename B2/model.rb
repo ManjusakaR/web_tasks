@@ -17,6 +17,6 @@ class User < ActiveRecord::Base
 end
 
 class Message < ActiveRecord::Base
-  belongs_to :user 
-  validates :content, presence: true
+  belongs_to :user
+  validates :content, presence: true, length: { minimum: 10 }
 end

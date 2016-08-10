@@ -23,8 +23,8 @@ get '/index' do
       #@msg=Message.all
     else
       #Message.order("id desc")
-      id=User.where(:username => i).first
-      @msg=Message.order("id desc").where(:user_id => id).all
+      id=User.where(username: i).first
+      @msg=Message.order("id desc").where(user_id: id).all
       #@msg=id.messages
     end
     erb :index
@@ -35,7 +35,7 @@ end
 
 post '/delete' do
   i=params[:mid]
-  if Message.delete(i)
+  if Message.destroy_all(id: i)
     @msg=Message.order("id desc")
     #@msg=Message.all
   else
@@ -53,7 +53,7 @@ get '/login' do
   if session[:id]==nil
     uname=params['username']
     upwd=params['pwd']
-    user=User.where(:username => uname, :password => upwd).first
+    user=User.where(username:  uname, password: upwd).first
     session[:id]=nil
     if user
       session[:id]=user.id
@@ -61,7 +61,11 @@ get '/login' do
       #@msg=Message.all
       erb :index
     else
-      @msg=user.errors.messages
+      if user.errors.any?
+        @msg=user.errors.messages
+      else
+        @msg=nil
+      end
       erb :login
     end
   else
@@ -77,12 +81,16 @@ end
 post '/signup' do
   uname=params[:username]
   upwd=params[:pwd]
-    @u=User.new(:username => uname, :password => upwd)
+    @u=User.new(username:  uname, password: upwd)
     if @u.valid?
       @u.save
       erb :login
     else
+      if @u.errors.any?
         @msg=@u.errors.messages
+      else
+        @msg=nil
+      end
       erb :signup
     end
 end
@@ -94,8 +102,8 @@ end
 post '/add' do
   msg=params[:content]
   time=Time.now
-  u = User.where(:id => session[:id]).first
-  @m = Message.new( :content => msg,:user_id => session[:id],:created_at =>time )
+  u = User.find(session[:id])
+  @m = Message.new( content: msg,user_id: session[:id],created_at: time )
   if @m.valid?
     @m.save
     u.message
@@ -104,7 +112,11 @@ post '/add' do
     #@msg=Message.all
     erb :index
   else
-    @msg=@m.errors.messages
+    if @m.errors.any?
+      @msg=@m.errors.messages
+    else
+      @msg=nil
+    end
     erb :add
   end
 end
