@@ -7,7 +7,8 @@ use Rack::Session::Pool, :expire_after => 120
 
 get '/' do
   if session[:id] != nil
-    @msg=Message.all
+    @msg=Message.order("id desc")
+    #@msg=Message.all
     erb :index
   else
     erb :login
@@ -18,9 +19,11 @@ get '/index' do
   i=params[:mid]
   if session[:id] != nil
     if i==""
-      @msg=Message.all
+      @msg=Message.order("id desc")
+      #@msg=Message.all
     else
-      @msg=Message.where(:user_id => i).all
+      #Message.order("id desc")
+      @msg=Message.order("id desc").where(:user_id => i).all
     end
     erb :index
   else
@@ -31,7 +34,8 @@ end
 post '/delete' do
   i=params[:mid]
   if Message.delete(i)
-    @msg=Message.all
+    @msg=Message.order("id desc")
+    #@msg=Message.all
   else
     @msg="no such id"
   end
@@ -51,7 +55,8 @@ get '/login' do
     session[:id]=nil
     if user
       session[:id]=user.id
-      @msg=Message.all
+      @msg=Message.order("id desc")
+      #@msg=Message.all
       erb :index
     else
       @msg=user.errors.messages
@@ -93,7 +98,8 @@ post '/add' do
     @m.save
     u.message
     @m.user
-    @msg=Message.all
+    @msg=Message.order("id desc")
+    #@msg=Message.all
     erb :index
   else
     @msg=@m.errors.messages

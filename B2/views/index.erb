@@ -8,26 +8,27 @@
 			<h3>
 				博客
 			</h3>
+			<tr>
+				用户<%= session[:id] %>
+			</tr>
 			<ul class="nav nav-tabs">
 				<li class="active">
-					 <a href="/index">Index</a>
-					 <a href="/add">Add</a>
-					 <a href="/login">Login</a>
-					 <a href="/signup">SignUp</a>
-					 <form  action="/exit" method="get">
- 					 <input type="submit" value="Exit" />
- 					</form>
-					 <form  action="/index" method="get">
-						 search_by_id <input type="text" name="mid"/>
-						<input type="submit" value="Submit" />
-					 </form>
-           <tr>
-             用户<%= session[:id] %>
-           </tr>
-				</li>
-			</ul>
-		</div>
+			    <a href="/index">Index</a>
+					<a href="/add">Add</a>
+					<a href="/login">Login</a>
+					<a href="/signup">SignUp</a>
+					<form  action="/exit" method="get">
+ 					<input type="submit" value="Exit" />
+ 				</form>
+					<form  action="/index" method="get">
+						search_by_id <input type="text" name="mid"/>
+					<input type="submit" value="Submit" />
+					</form>
+
+			</li>
+		</ul>
 	</div>
+ </div>
 	<div class="row clearfix">
 		<div class="col-md-8 column">
 			<table class="table">
@@ -36,6 +37,7 @@
             <% Message.columns.map { |col| %>
             <td> <%= col.name %></td>
             <% } %>
+						<td>Delete</td>
           </tr>
 				</thead>
 				<tbody>
@@ -47,7 +49,7 @@
             <td><%= m.created_at %> </td>
             <td>
               <form  action="/delete" method="post">
-               <input type="submit" name="mid" value="<%= m.id%>" />Delete
+               <input type="submit" name="mid" value="<%= m.id%>" />
               </form>
             </td>
           </tr>

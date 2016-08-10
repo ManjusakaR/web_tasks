@@ -1,7 +1,27 @@
-<%= @msg  %>
-<form action='/login' method="get">
-  Name: <input type="text" name="username" />
-  Password: <input type="password" name="pwd" />
-  <input type="submit" value="Log in" />
-</form>
-<a href="/signup">Sign Up</a>
+<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js"></script>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3>
+				Login
+			</h3>
+			<div class="alert alert-success alert-dismissable">
+				 <strong><%= @msg %></strong>
+			</div>
+			<form role="form" action='/login' method="get">
+				<div class="form-group">
+					 <label for="exampleInputEmail1">User Name</label><input class="form-control" id="exampleInputEmail1" type="text" name="username"/>
+				</div>
+				<div class="form-group">
+					 <label for="exampleInputPassword1">Password</label><input class="form-control" id="exampleInputPassword1" type="password" name="pwd" />
+				</div>
+			  <button class="btn btn-default" type="submit">Login In</button>
+			</form>
+			<a href="/signup">Sign Up</a>
+			<a href="/index">Index</a>
+		</div>
+	</div>
+</div>

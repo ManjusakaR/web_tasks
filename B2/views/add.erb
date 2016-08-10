@@ -1,6 +1,23 @@
-<%= @msg  %>
-<form action="/add" method="post">
-  content: <input type="text" name="content" />
-  <input type="submit" value="Add" />
-</form>
-<a href="/index">Index</a>
+<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js"></script><a href="/signup">Sign Up</a>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3>
+				Add
+			</h3>
+			<div class="alert alert-success alert-dismissable">
+				 <strong><%= @msg %></strong>
+			</div>
+			<form role="form" action='/add' method="post">
+				<div class="form-group">
+					 <label for="exampleInputEmail1">Content</label><input class="form-control" id="exampleInputEmail1" type="text" name="content"/>
+				</div>
+			  <button class="btn btn-default" type="submit">Add</button>
+			</form>
+      <a href="/index">Index</a>
+		</div>
+	</div>
+</div>
