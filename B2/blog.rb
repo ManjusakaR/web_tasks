@@ -16,14 +16,16 @@ get '/' do
 end
 
 get '/index' do
-  i=params[:mid]
+  i=params[:username]
   if session[:id] != nil
     if i==""
       @msg=Message.order("id desc")
       #@msg=Message.all
     else
       #Message.order("id desc")
-      @msg=Message.order("id desc").where(:user_id => i).all
+      id=User.where(:username => i).first
+      @msg=Message.order("id desc").where(:user_id => id).all
+      #@msg=id.messages
     end
     erb :index
   else

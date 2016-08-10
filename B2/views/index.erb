@@ -21,7 +21,7 @@
  					<input type="submit" value="Exit" />
  				</form>
 					<form  action="/index" method="get">
-						search_by_id <input type="text" name="mid"/>
+						search_by_name <input type="text" name="username"/>
 					<input type="submit" value="Submit" />
 					</form>
 
@@ -45,7 +45,7 @@
           <tr>
             <td><%= m.id%> </td>
             <td><%= m.content %> </td>
-            <td><%= m.user_id %> </td>
+            <td><%= User.where(:id => m.user_id).first.username %> </td>
             <td><%= m.created_at %> </td>
             <td>
               <form  action="/delete" method="post">
