@@ -13,7 +13,9 @@ updated_at|datetime|修改时间
 字段名|数据类型|说明
 -|-|-
 id|int|文章id（主键，自增）
+title|varchar()|文章标题
 content|varchar()|文章内容
+type|int|文章类型
 created_at|datetime|文章创建时间
 updated_at|datetime|文章修改时间
 
