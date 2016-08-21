@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821133914) do
+ActiveRecord::Schema.define(version: 20160821151456) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "username"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20160821133914) do
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
     t.text     "content",    limit: 65535
-    t.integer  "type"
+    t.integer  "p_type"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
