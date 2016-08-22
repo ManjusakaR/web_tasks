@@ -1,40 +1,42 @@
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%=@post.content %>
-</p>
-
-<h2>Comments</h2>
-<% @post.comments.each do |comment| %>
-<% if comment.passed==1 %>
-  <p>
-    <strong>E-mail:</strong>
-    <%= comment.email %>
-  </p>
-
-  <p>
-    <strong>Content:</strong>
-    <%= comment.content %>
-  </p>
-  <% end %>
-<% end %>
-
-<h2>Add a comment:</h2>
-<%= form_for([@post, @post.comments.build]) do |f| %>
-  <p>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
-<%= link_to 'back', root_url  %>
+<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.js"></script>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3 class="text-center">
+				  <%= @post.title %>
+			</h3>
+			<dl>
+				<dt>
+					  <%=@post.content %>
+				</dt>
+			</dl>
+			<h3>
+			Comments
+			</h3>
+      <% @post.comments.each do |comment| %>
+      <% if comment.passed==1 %>
+      <span class="label label-default"><%= comment.email %></span>
+			<p>
+				<%= comment.content %>
+			</p>
+      <% end %>
+    <% end %>
+    <h2>Add a comment:</h2>
+    <%= form_for([@post, @post.comments.build]) do |f| %>
+      <p>
+        <%= f.label :email %><br>
+        <%= f.text_field :email %>
+      </p>
+      <p>
+        <%= f.label :content %><br>
+        <%= f.text_area :content %>
+      </p>
+      <p>
+        <%= f.submit %>
+      </p>
+    <% end %>
+ <%= link_to 'back', root_url  %>
+		</div>
+	</div>
+</div>

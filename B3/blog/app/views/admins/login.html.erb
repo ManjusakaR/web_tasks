@@ -1,16 +1,35 @@
-<h1>Login</h1>
-<%= form_for :admin, url: login_url ,method: :get do |f| %>
-  <p>
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </p>
+<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.js"></script>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-8 column">
+			<h3>
+				Login
+			</h3>
+      <%= form_for :admin, url: login_url ,method: :get do |f| %>
+        <p>
+          <%= f.label :username %><br>
+          <%= f.text_field :username %>
+        </p>
 
-  <p>
-    <%= f.label :password %><br>
-    <%= f.password_field  :password %>
-  </p>
+        <p>
+          <%= f.label :password %><br>
+          <%= f.password_field  :password %>
+        </p>
 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+        <p>
+          <%= f.submit %>
+        </p>
+      <% end %>
+					 <%= link_to 'Index', root_url  %>
+		</div>
+		<div class="col-md-4 column">
+			<div class="alert alert-success alert-dismissable">
+				<h4>
+					注意!
+				</h4> <strong><%= @msg %></strong>
+			</div>
+		</div>
+
+	</div>
+</div>

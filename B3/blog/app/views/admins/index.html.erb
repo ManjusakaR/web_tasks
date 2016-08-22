@@ -1,7 +1,28 @@
-<%= Admin %>
-<%= session[:admin_id] %><br>
-<%= link_to 'Index',root_url %><br>
-<%= link_to 'All blog',posts_url %><br>
-<%= link_to 'New blog', new_post_url %><br>
-<%= link_to 'Destroy blog', destroy_post_url %><br>
-<%= link_to 'Blog Comments', blog_comments_url %><br>
+<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.js"></script>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-8 column">
+					<h3>
+            <%= Admin %>
+            <%= session[:admin_id] %><br>
+					</h3>
+					<div class="tabbable" id="tabs-945655">
+						<ul class="nav nav-tabs">
+							<li>
+                <%= link_to 'Index',root_url %><br>
+                <%= link_to 'All blog',posts_url %><br>
+                <%= link_to 'New blog', new_post_url %><br>
+                <%= link_to 'Destroy blog', destroy_post_url %><br>
+                <%= link_to 'Blog Comments', blog_comments_url %><br>
+                <%= link_to 'Log Out', logout_url %><br>
+              </li>
+						</ul>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

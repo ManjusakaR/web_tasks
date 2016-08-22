@@ -1,24 +1,119 @@
-<h1>Welcome</h1>
-<%= link_to 'Admin', admins_url  %>
-<h1>Listing posts</h1>
-<h1>
-  <%= link_to 'All', root_url %>
-  <%= link_to 'Type 1', ptype_url("1") %>
-  <%= link_to 'Type 2', ptype_url("2") %>
-</h1>
-<table>
-  <tr>
-    <th>Id</th>
-    <th>Title</th>
-    <th>Created_at</th>
-  </tr>
-
-  <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.id %></td>
-      <td><%= post.title %></td>
-      <td><%= post.created_at %></td>
-      <td>  <%= link_to 'Show blog', wshow_url(post.id) %></td>
-    </tr>
-  <% end %>
-</table>
+<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.js"></script>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-8 column">
+					<h3>
+					Welcome	Index (Listing posts)
+					</h3>
+					<div class="tabbable" id="tabs-945655">
+						<ul class="nav nav-tabs">
+							<li>
+                <%= link_to 'All', root_url %>
+               <%= link_to 'Type 1', ptype_url("1") %>
+               <%= link_to 'Type 2', ptype_url("2") %>
+              </li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane" id="panel-126022">
+								<p>
+                  <table class="table">
+        						<thead>
+        							<tr>
+        								<th>
+        									Id
+        								</th>
+        								<th>
+        									Title
+        								</th>
+        								<th>
+        									created_at
+        								</th>
+        							</tr>
+        						</thead>
+        						<tbody>
+                      <% @posts.each do |post| %>
+                          <tr>
+                            <td><%= post.id %></td>
+                            <td><%= post.title %></td>
+                            <td><%= post.created_at %></td>
+                            <td>  <%= link_to 'Show blog', wshow_url(post.id) %></td>
+                          </tr>
+                        <% end %>
+        							</tr>
+        						</tbody>
+        					</table>
+								</p>
+							</div>
+							<div class="tab-pane active" id="panel-167821">
+								<p>
+                  <table class="table">
+        						<thead>
+        							<tr>
+        								<th>
+        									Id
+        								</th>
+        								<th>
+        									Title
+        								</th>
+        								<th>
+        									created_at
+        								</th>
+        							</tr>
+        						</thead>
+        						<tbody>
+                      <% @posts.each do |post| %>
+                          <tr>
+                            <td><%= post.id %></td>
+                            <td><%= post.title %></td>
+                            <td><%= post.created_at %></td>
+                            <td>  <%= link_to 'Show blog', wshow_url(post.id) %></td>
+                          </tr>
+                        <% end %>
+        							</tr>
+        						</tbody>
+        					</table>
+								</p>
+							</div>
+              <div class="tab-pane" id="panel-126022">
+								<p>
+                  <table class="table">
+        						<thead>
+        							<tr>
+        								<th>
+        									Id
+        								</th>
+        								<th>
+        									Title
+        								</th>
+        								<th>
+        									created_at
+        								</th>
+        							</tr>
+        						</thead>
+        						<tbody>
+                      <% @posts.each do |post| %>
+                          <tr>
+                            <td><%= post.id %></td>
+                            <td><%= post.title %></td>
+                            <td><%= post.created_at %></td>
+                            <td>  <%= link_to 'Show blog', wshow_url(post.id) %></td>
+                          </tr>
+                        <% end %>
+        							</tr>
+        						</tbody>
+        					</table>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 column">
+					 <%= link_to 'Admin', admins_url  %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

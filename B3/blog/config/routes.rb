@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get '/destroy_list', to: 'posts#destroy_list',as: 'destroy_post'
   get '/blog_comments', to: 'posts#blog_comments',as: 'blog_comments'
   post '/destroy_comment/:id', to: 'comments#destroy_comment',as: 'destroy_comment'
+  get '/logout', to: 'admins#logout',as: 'logout'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

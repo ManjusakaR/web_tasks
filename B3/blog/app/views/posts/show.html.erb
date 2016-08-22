@@ -1,39 +1,53 @@
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.js"></script>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3 class="text-center">
+				  <%= @post.title %>
+			</h3>
+			<dl>
+				<dt>
+					  <%=@post.content %>
+				</dt>
+			</dl>
+			<h3>
+			Comments
+			</h3>
+      <% @post.comments.each do |comment| %>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
-
-<h2>Comments</h2>
-<% @post.comments.each do |comment| %>
-
-  <p>
-    <strong>E-mail:</strong>
-    <%= comment.email %>
-  </p>
-  <p>
-    <strong>Content:</strong>
-    <%= comment.content %>
-  </p>
-  <% if comment.passed==0 %>
-  <p>
-    <%= form_for :comment,url: passed_url do |f| %>
-    <%= f.hidden_field :id,value: comment.id %>
-    <%= f.submit%>
-    <% end %>
-  </p>
-  <% end %>
-
-  <p>
-    <%= form_for :comment,url: destroy_comment_url do |f| %>
-    <%= f.hidden_field :id,value: comment.id %>
-    <%= f.submit%>
-    <% end %>
-  </p>
-
-<% end %>
+        <p>
+          <strong>E-mail:</strong>
+          <%= comment.email %>
+        </p>
+        <p>
+          <strong>Content:</strong>
+          <%= comment.content %>
+        </p>
+        <% if comment.passed==0 %>
+        <p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>
+                  <%= form_for :comment,url: passed_url do |f| %>
+                  <%= f.hidden_field :id,value: comment.id %>
+                  <%= f.submit 'Passed'%>
+                  <% end %>
+                  <% end %>
+                </th>
+                <th>
+                  <%= form_for :comment,url: destroy_comment_url do |f| %>
+                  <%= f.hidden_field :id,value: comment.id %>
+                  <%= f.submit 'Delete'%>
+                  <% end %>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </p>
+      <% end %>
 <%= link_to 'back', posts_url  %>
+		</div>
+	</div>
+</div>
