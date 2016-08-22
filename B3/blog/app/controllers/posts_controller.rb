@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  #http_basic_authenticate_with name: "admin", password: "admin"
 
   def new
   end
@@ -22,15 +23,28 @@ class PostsController < ApplicationController
     @post=Post.find_by_id(params[:id])
   end
 
-  def destroy
-    Post.destroy(params[:id])
+  def destroy_list
     @posts=Post.all
-    render 'index'
+  end
+  
+  def blog_comments
+    @posts=Post.all
+  end
+
+
+  def destroy
+    if session[:admin_id]==nil
+      render 'admin/index'
+    else
+      Post.destroy(params[:id])
+      @posts=Post.all
+      render 'destroy_list'
+    end
   end
 
   private
     def post_params
-      params.require(:post).permit(:title,:content,:p_type)
+      params.require(:post).permit(:title,:content,:p_type,:id)
     end
 
 end

@@ -1,5 +1,7 @@
 <%= Admin %>
 <%= session[:admin_id] %><br>
+<%= link_to 'Index',root_url %><br>
 <%= link_to 'All blog',posts_url %><br>
 <%= link_to 'New blog', new_post_url %><br>
-<%= link_to 'Destroy blog', posts_url %><br>
+<%= link_to 'Destroy blog', destroy_post_url %><br>
+<%= link_to 'Blog Comments', blog_comments_url %><br>

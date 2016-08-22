@@ -9,6 +9,10 @@
     <tr>
       <td><%= post.title %></td>
       <td><%= post.content %></td>
+      
+      <td>
+        <%= link_to 'Delete', post , method: :delete%>
+      </td>
     </tr>
   <% end %>
 </table>
