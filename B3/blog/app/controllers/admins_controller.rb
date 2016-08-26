@@ -5,7 +5,7 @@ class AdminsController < ApplicationController
 
   def index
     if session[:admin_id]==nil
-      @msg=''
+      @msg='please login in'
       render 'login'
     else
       render 'index'
@@ -19,29 +19,25 @@ class AdminsController < ApplicationController
       admin=Admin.find_by_username(username)
       if admin&&admin.password==password
         session[:admin_id]=admin.id
-        render  'index'
+        redirect_to  action: :index
       else
         $login_times+=1
         @msg="error "+$login_times.to_s+" times"
         $last_time=Time.now()
-        session[:admin_id]=nil
-        render 'login'
       end
     else
       $now=Time.now()
       if $now-$last_time>10
         $login_times=0
-        render 'login'
       else
-        @msg="please wait 180s!"
-        render 'login'
+        @msg="please wait 10s!"
       end
     end
   end
 
   def logout
     session[:admin_id]=nil
-    render 'login'
+    redirect_to  action: :index
   end
 
 end

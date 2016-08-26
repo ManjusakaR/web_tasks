@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-      @posts=Post.all
+    @posts=Post.all
   end
 
   def show
@@ -10,6 +10,5 @@ class WelcomeController < ApplicationController
 
   def ptype
     @posts=Post.where(p_type: params[:p_type]).all
-    render 'index'
   end
 end

@@ -9,26 +9,24 @@ class CommentsController < ApplicationController
 
     def passed
       if session[:admin_id]==nil
-        render 'admin/index'
+        redirect_to admins_url
       else
         comment = Comment.find_by(id: comment_params[:id])
         comment.update(passed: '1')
-        @post = Post.find(comment.post_id)
-        render 'posts/show'
+        redirect_to post_url
       end
     end
 
     def destroy_comment
       if session[:admin_id]==nil
-        render 'admin/index'
+        redirect_to admins_url
       else
         comment = Comment.find_by(id: comment_params[:id])
-        @post = Post.find(comment.post_id)
         Comment.destroy(comment.id)
-        render 'posts/show'
+        redirect_to post_url
       end
     end
-    
+
     private
       def comment_params
         params.require(:comment).permit(:email, :content,:id)

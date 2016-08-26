@@ -6,12 +6,11 @@ class PostsController < ApplicationController
 
   def create
     if session[:admin_id]==nil
-      render 'admin/index'
+      redirect_to admins_url
     else
       @post=Post.new(post_params)
       @post.save
-      @posts=Post.all
-      render 'index'
+      redirect_to posts_url
     end
   end
 
@@ -26,7 +25,7 @@ class PostsController < ApplicationController
   def destroy_list
     @posts=Post.all
   end
-  
+
   def blog_comments
     @posts=Post.all
   end
@@ -34,11 +33,11 @@ class PostsController < ApplicationController
 
   def destroy
     if session[:admin_id]==nil
-      render 'admin/index'
+      redirect_to admins_url
     else
       Post.destroy(params[:id])
       @posts=Post.all
-      render 'destroy_list'
+      redirect_to destroy_post_url
     end
   end
 
