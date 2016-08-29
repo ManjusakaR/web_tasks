@@ -4,7 +4,6 @@ class CommentsController < ApplicationController
       @post = Post.find(params[:post_id])
       comment_params[:passed]=0
       @comment = @post.comments.create(comment_params)
-      redirect_to wshow_url(@post.id)
     end
 
     def passed

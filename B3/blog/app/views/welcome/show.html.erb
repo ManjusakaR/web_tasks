@@ -1,42 +1,40 @@
-<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.css" rel="stylesheet">
-<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.js"></script>
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<h3 class="text-center">
-				  <%= @post.title %>
-			</h3>
-			<dl>
-				<dt>
-					  <%=@post.content %>
-				</dt>
-			</dl>
-			<h3>
-			Comments
-			</h3>
-      <% @post.comments.each do |comment| %>
-      <% if comment.passed==1 %>
-      <span class="label label-default"><%= comment.email %></span>
+			<h1 class="text-center">
+				<%= @post.title %>
+			</h1>
+
 			<p>
-				<%= comment.content %>
+				<%=@post.content %>
+			</p>
+			<p>
+			</p> <span class="label label-default">Comments</span>
+			<% @post.comments.each do |comment| %>
+      <% if comment.passed==1 %>
+			<p>
+      e-mail:<%= comment.email %>
+		  </p>
+			<p>
+				content:<%= comment.content %>
 			</p>
       <% end %>
     <% end %>
-    <h2>Add a comment:</h2>
-    <%= form_for([@post, @post.comments.build]) do |f| %>
-      <p>
-        <%= f.label :email %><br>
-        <%= f.text_field :email %>
-      </p>
-      <p>
-        <%= f.label :content %><br>
-        <%= f.text_area :content %>
-      </p>
-      <p>
-        <%= f.submit %>
-      </p>
-    <% end %>
- <%= link_to 'back', :back  %>
+		 <span class="label label-default">Add Comments</span>
+			<%= form_for([@post, @post.comments.build]) do |f| %>
+	      <p>
+	        <%= f.label :email %><br>
+	        <%= f.text_field :email %>
+	      </p>
+	      <p>
+	        <%= f.label :content %><br>
+	        <%= f.text_area :content %>
+	      </p>
+	      <p>
+	        <%= f.submit %>
+	      </p>
+	    <% end %>
+			<%= link_to 'back', :back  %>
 		</div>
 	</div>
 </div>
